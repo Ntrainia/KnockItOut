@@ -1,0 +1,54 @@
+This will mark a week since I started studying Python for half an hour daily.
+Topics I have learned:
+- Strings
+- Lists/Tuples
+- If statements
+
+This experiment so far has been surreal. I am having fun going through the Python Crash Course book and adjusting the
+tutorials and examples to my liking based on my current interests. There is a feeling of potentially I am simply familiar
+and recognizing concepts, so maybe I don't know them. For this week, I will try to make a silly ToDo program.
+'''
+# Login page
+print("Welcome to KnockItOut!")
+answer = 'Yes'
+
+input("Are you ready to knock off items on your list or add some? Answer 'Yes' to continue:")
+if answer == 'Yes':
+    print("Great! Let's continue!")
+else:
+    print("Aw, that's too bad. Come back next time!")
+
+
+
+# Todo_list
+todo_list = []
+
+# adding personal tasks
+todo_list.append('Brush teeth')
+todo_list.append('Clean room')
+todo_list.append('Study')
+todo_list.append('Walk the dog')
+todo_list.append('Code')
+print('These are your tasks:',todo_list)
+
+# remove brush teeth using two methods del & pop
+del todo_list[0]
+print('These are your tasks: ', todo_list)
+
+popped_task = todo_list.pop(-1)
+print('You completed ' + popped_task + "!\n" + "This is your list now", todo_list)
+
+# check the amount of items in your list
+amount = len(todo_list)
+print('This is how many tasks you have on your to-do list:', amount)
+'''
+
+The above section is what I done on my own without looking at tutorials and my past lessons. It is a vast improvement to
+what I have done on my first attempt a week ago. There are things that I want to improve on and edit with the remaining
+time.
+1. For the first if statement when the user says no, it prints out the rest of the script which may contain sensitive
+information. I want the program to stop when the user answers anything else, but 'Yes'
+2. I am manually adding and removing the tasks myself. It would be a better experience for the user if they are prompted
+whether they want to add or remove a task in their list by typing it in and have it added into their list.
+3. This is a vision I have in the far future, but I would like to keep a streak for each task added since repeating
+habits is what enforces them. Letting users see their streak for each task would motivate them better.
