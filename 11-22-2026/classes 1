@@ -1,0 +1,5 @@
+Object-oriented programming
+classes - define the general behavior that a whole category of objects can have
+instantiation - making an object from a class
+instances - specify the info that can be stored here
+methods - actions that can be taken with instances
