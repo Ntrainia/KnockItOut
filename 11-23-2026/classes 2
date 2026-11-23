@@ -1,0 +1,6 @@
+Two ways to modify attributes of an instance
+- directly
+- write methods that update attributes in specific ways
+
+Setting a Default Value for an Attribute
+- every attribute in a class needs an initial value, even if that value is 0 or an empty string
