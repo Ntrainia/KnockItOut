@@ -1,0 +1,64 @@
+I am admittedly in a slump. I find that learning new concepts is not as fun as it was
+in the first twenty days. This is most likely because the concepts are getting more difficult
+and it grows increasingly daunting as I try to dive into the content.
+
+I can't help, but feel that there is so much to learn and that, just by starting, I am far behind.
+I will try to tackle this slump by making it a habit of opening PyCharm for now. Repeating is the key.
+Today's goal is to balance fun and study as I am interested in those Python Scripts that print out the lyrics
+with a time sync.
+
+I will study the code, learn how to read it, and try to do it myself.
+
+For today's reference study, I am looking at Sandreke's Synced Lyrics Player from GitHub.
+https://github.com/Sandreke/synced-lyrics-player
+
+1. I assessed Sandreke's syned-lyrics-player repository. I have used Github a lot more in this past month,
+but it is unfamiliar due to the lack of navigation experience. Based on Sandreke's repository, there is one main python
+script that takes song lyrics from a specified folder "lyrics".
+
+2. I wanted to test the code for myself, but I didn't know how initially. I pressed the main.py script, which let me see
+the code. However, this was not what I wanted. Luckily, the way to install the package was a flashy green "<> Code" button.
+I downloaded the package into my PyCharm, then tested it out to see what the script is doing.
+
+The code below is copied for breakdown of the script from Sandreke
+# I will use hashtags to indicate my comments for study
+
+import time # the .lrc uses timestamp to mark when lyrics play
+import re # this is a new module to me. re module is Regular Expression. This script seems to use re.compile().
+import sys # this module allows for interaction with the interpreter
+
+# ANSI color codes
+YELLOW = '\033[93m' # This somehow turned the text yellow. The variable is YELLOW and it is equal to the ANSI color code.
+RESET = '\033[0m' # I am not sure what the reset does
+
+def load_lrc(file_path):
+    """Load and parse .lrc file into a list of (timestamp, text) tuples."""
+    pattern = re.compile(r"\[(\d+):(\d+\.\d+)\](.*)")
+    lyrics = []
+    with open(file_path, "r", encoding="utf-8") as f:
+        for line in f:
+            match = pattern.match(line.strip())
+            if match:
+                minutes, seconds, text = match.groups()
+                lyrics.append((int(minutes) * 60 + float(seconds), text.strip()))
+    return lyrics
+
+def play_lyrics(lyrics):
+    """Display lyrics with typewriter effect synchronized with timestamps."""
+    start_time = time.time()
+    for ts, text in lyrics:
+        while time.time() - start_time < ts:
+            time.sleep(0.01)
+        sys.stdout.write('\r' + ' ' * 80 + '\r')
+        for char in text:
+            sys.stdout.write(YELLOW + char)
+            sys.stdout.flush()
+            time.sleep(0.03)
+        sys.stdout.write(RESET + '\n')
+        sys.stdout.flush()
+
+if __name__ == "__main__":
+    lyrics = load_lrc("lyrics/diles.lrc")
+    play_lyrics(lyrics)
+
+
